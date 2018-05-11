@@ -1,0 +1,27 @@
+.label {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.field {
+    padding: 5px;
+    margin-left: 10px;    
+    font-size: 16px;
+    border: 2px solid midnightblue;
+}
+
+.message {
+    margin-left: 10px;        
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: orangered;
+}
+
+.drop-option {
+    padding: 3px;
+    font-size:  16px;
+    margin-left: 10px;
+}
