@@ -5,6 +5,7 @@ import { ControlBase } from './control-base';
 import { TextboxControl } from './textbox-control';
 import { DropdownControl } from './dropdown-control';
 import { isArray } from 'util';
+import { moveEmbeddedView } from '@angular/core/src/view';
 
 @Injectable()
 export class ControlService{
@@ -28,15 +29,17 @@ export class ControlService{
         controls.push(new TextboxControl({
           key: key,
           label: key.toUpperCase(),
-          value: '',
+          value: model[key],
           required: true
         }))
       } else {
+        let options = [];
+        options.push('Select Option');
+        options = model[key].concat(options);
         controls.push(new DropdownControl({
           key: key,
           label: key.toUpperCase(),
-          options: model[key].map(value => ({key:value, value: value}) ),
-          required: true
+          options: options.map(value => ({key:value, value: value}) )
         }))
       }
     });
