@@ -1,2 +1,14 @@
-<h1>Dynamic Control From Model</h1>
-<app-dynamic-form [controls]="controls"></app-dynamic-form>
+<div class="container">
+<h1> Model To Dynamic Form</h1>
+<select (change)="onChange($event.target.value)" class="drop-option">
+    <option value="1">employee model</option>
+    <option value="2">product model</option>
+    <option value="3">book model</option>
+</select>
+
+<hr>
+
+<app-dynamic-form *ngIf="show==1" [formdata]="employee"></app-dynamic-form>
+<app-dynamic-form *ngIf="show==2" [formdata]="product"></app-dynamic-form>
+<app-dynamic-form *ngIf="show==3" [formdata]="book"></app-dynamic-form>
+</div>

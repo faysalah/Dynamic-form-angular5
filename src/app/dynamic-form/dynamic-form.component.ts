@@ -12,14 +12,16 @@ import { ControlService } from '../control.service';
 
 export class DynamicFormComponent implements OnInit {
 
-  @Input() controls: ControlBase<any>[] = [];
-
+  // @Input() controls: ControlBase<any>[] = [];
+  @Input() formdata = [];
+  controls =[]
   form: FormGroup;
   payLoad = '';
 
   constructor(private cs: ControlService) { }
 
   ngOnInit() {
+    this.controls = this.cs.createForm(this.formdata);
     this.form = this.cs.toFormGroup(this.controls);
   }
 

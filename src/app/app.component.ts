@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ControlBase } from './control-base';
-import { TextboxControl } from './textbox-control';
-import { DropdownControl } from './dropdown-control';
-import { isArray } from 'util';
+import { ControlService} from './control.service';
 
 @Component({
   selector: 'app-root',
@@ -22,31 +20,30 @@ export class AppComponent {
     varient: ['1GB', '2GB', '3GB'],
     color: ['Grey','Black', 'Red']
   }
-  controls = [];
+
+  book = {
+    name: 'Theory of everything',
+    author: 'anonymous',
+    language: ['En','Bn','Fr']
+  }
+  form;
+  show = 1;
   constructor() {
-  //  this.createControls(this.employee);
-   this.createControls(this.product);
+    this.form = this.product;
   }
 
-  createControls(model){
-    let fieldsNames = Object.keys(model);
-    fieldsNames.forEach(key => {
-      if (!isArray(model[key])) {
-        this.controls.push(new TextboxControl({
-          key: key,
-          label: key.toUpperCase(),
-          value: '',
-          required: true
-        }))
-      } else {
-        this.controls.push(new DropdownControl({
-          key: key,
-          label: key.toUpperCase(),
-          options: model[key].map(value => ({key:value, value: value}) ),
-          required: true
-        }))
-      }
-    });
+  onChange(value){
+    this.show =value;
+    if (value == 1) {
+      this.form = this.product;
+    }
+    if (value == 2) {
+      this.form = this.employee;          
+    } 
+    else if( value == 3) {
+      this.form = this.book;        
+    }
   }
+  
 }
 
